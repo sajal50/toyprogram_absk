@@ -1,6 +1,5 @@
 import React from 'react';
-
-import TaskAddForm from './TaskAddForm/TaskAddForm.js'
+import {hashHistory} from 'react-router';
 
 class TaskComponent extends React.Component {
 
@@ -8,7 +7,7 @@ class TaskComponent extends React.Component {
 
 		super(props);
 
-		
+		this.onAddTaskClickHandler = this.onAddTaskClickHandler.bind(this);
 		
 
 	}
@@ -79,6 +78,14 @@ class TaskComponent extends React.Component {
 
 	}
 
+	onAddTaskClickHandler () {
+
+		console.log("being clicked");
+		hashHistory.push('addTask');
+
+
+	}
+
 	render () {
 
 		let {tasks} = this.props;
@@ -96,7 +103,7 @@ class TaskComponent extends React.Component {
 
 				</div>
 
-				<TaskAddForm setNewTask = {setNewTask} />
+				<input type = 'button' className = 'btn btn-primary' onClick = {this.onAddTaskClickHandler} value = "Add Task" />
 				
 			</div>
 

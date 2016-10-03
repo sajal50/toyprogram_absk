@@ -1,4 +1,4 @@
-
+import {hashHistory} from "react-router"
 export function setNewTask (payload) {
 
 	return (dispatch, getState) => {
@@ -8,7 +8,7 @@ export function setNewTask (payload) {
 
 		payload.id = newId;
 
-		
+		hashHistory.push('tasks');
 		dispatch ({
 
 			"type" : 'ADD_NEW_TASK',

@@ -6,6 +6,7 @@ import {Route, IndexRoute, Router, hashHistory, Redirect} from 'react-router';
 import {Provider} from 'react-redux';
 
 import TaskContainer from './containers/TaskContainer/TaskContainer.js'
+import AddTaskContainer from './containers/AddTaskContainer/AddTaskContainer.js'
 import store from './store/store.js';
 
 
@@ -18,6 +19,8 @@ ReactDOM.render(
 			<Route path = '/'>
 
 				<Route path = "tasks" component = {TaskContainer} />
+				<Route path = "addTask" component = {AddTaskContainer} />
+
 
 			</Route>
 

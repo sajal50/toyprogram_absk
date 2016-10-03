@@ -1,6 +1,6 @@
 import React from 'react';
 
-class TaskAddForm extends React.Component {
+class AddTaskComponent extends React.Component {
 
 	constructor (props) {
 
@@ -67,4 +67,4 @@ class TaskAddForm extends React.Component {
 
 }
 
-export default TaskAddForm;
+export default AddTaskComponent;

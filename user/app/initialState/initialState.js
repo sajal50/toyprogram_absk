@@ -5,11 +5,11 @@ let initialState = () => {
 		"tasks" : [{
 			"id" : 1,
 			"taskName" : "do this",
-			"taskAssigned" : "Fuck this"
+			"taskAssigned" : "A"
 		},{
 			"id" : 2,
-			"taskName" : "do that",
-			"taskAssigned" : "Fuck that"
+			"taskName" : "asdkjbhas",
+			"taskAssigned" : "B"
 		}]
 
 

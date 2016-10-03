@@ -1,11 +1,11 @@
-import React from 'react';
+
 import {connect} from 'react-redux';
 import {setNewTask} from '../../actions/taskActions.js';
 import AddTaskComponent from '../../components/AddTaskComponent/AddTaskComponent.js';
 
 
 
-let mapStateToProps = (state) => {
+let mapStateToProps = () => {
 
 	return {
 

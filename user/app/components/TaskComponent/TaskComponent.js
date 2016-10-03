@@ -91,9 +91,7 @@ class TaskComponent extends React.Component {
 		let {tasks} = this.props;
 
 		let table = this.getTasksRender(tasks);
-
-		let {taskActions} = this.props;
-		let {setNewTask} = taskActions;
+		
 		return (
 			<div>
 				<div className = 'col-md-6'>

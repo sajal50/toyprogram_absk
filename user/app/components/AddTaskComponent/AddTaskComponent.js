@@ -30,7 +30,7 @@ class AddTaskComponent extends React.Component {
 
 	render () {
 
-		let {tasks} = this.props;
+		
 
 		return (
 			<div className = 'col-md-6'>

@@ -1,4 +1,4 @@
-import {hashHistory} from "react-router"
+import {hashHistory} from "react-router";
 export function setNewTask (payload) {
 
 	return (dispatch, getState) => {

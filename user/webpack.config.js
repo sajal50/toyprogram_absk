@@ -1,72 +1,105 @@
 var webpack = require('webpack');
+var production = process.env.NODE_ENV === 'production';
+
+var plugins = [
+	new webpack.HotModuleReplacementPlugin(),
+	new webpack.NoErrorsPlugin(),
+	new webpack.DefinePlugin({
+		'process.env': {
+			'NODE_ENV': JSON.stringify('dev')
+		}
+	})
+];
+
+if (production) {
+
+	plugins = [
+
+		new webpack.DefinePlugin({
+			'process.env': {
+				'NODE_ENV': JSON.stringify('production')
+			}
+		}),
+		new webpack.optimize.DedupePlugin(),
+		new webpack.optimize.CommonsChunkPlugin({
+			name:      'main',
+			children:  true,
+			minChunks: 2
+		}),
+
+		new webpack.optimize.UglifyJsPlugin({
+			mangle:   true,
+			compress: {
+				warnings: false
+			}
+		})
+
+	];
+}
+
+
+var entry = [
+
+	'webpack-dev-server/client?http://localhost:8080',
+
+
+	'webpack/hot/only-dev-server',
+
+	'./app/app.js'
+];
+
+
+if (production) {
+
+	entry = ['babel-polyfill', './app/app.js'];
+}
+
+
+var output = {
+
+	filename : 'public/bundle.js',
+	'publicPath': '/'
+};
+
+if (production) {
+	output =  {
+
+		filename : 'bundle.js',
+		path : __dirname + '/public',
+		publicPath: './'
+	};
+}
+
 module.exports = {
-
-
-	entry: [
-	  'webpack-dev-server/client?http://localhost:8080', // WebpackDevServer host and port
-	  'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
-	  "./app/app.js" // Your appʼs entry point
-	],
-
-	'output' : {
-
-		filename : "public/bundle.js",
-		"publicPath": "/"
-	},
-	 
-	devtool: 'eval',
-
+	entry: entry ,
+	'output' : output ,
+	devtool:  production ? false : 'eval',
 	module : {
-
 		loaders : [
 
-		{
+			{
 
-			test : /\.jsx?$/,
-			exclude : /(node_modules|bower_components)/,
-			loaders : ['react-hot','babel?presets[]=es2015,presets[]=react,presets[]=stage-2'],
-			/*loader: 'babel',*/
-			/*query : {
+				test : /\.jsx?$/,
+				exclude : /(node_modules|bower_components)/,
+				loaders : ['react-hot','babel?presets[]=es2015,presets[]=react,presets[]=stage-2']
 
-				presets : ['react','es2015']
-			}*/
-		},
-		{ test: /\.css$/, loader: 'style-loader!css-loader' },
-        /*{ test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
-        { test: /\.(woff|woff2)$/, loader:"url?prefix=font/&limit=5000" },
-        { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
-        { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" }*/
-        { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
-
-
-
+			},
+			{
+				test: /\.scss$/,
+				loaders: ['style?sourceMap',
+					'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+					'resolve-url',
+					'sass?sourceMap']
+			},
+			{ test: /\.css$/, loader: 'style-loader!css-loader' },
+			{ test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
 		]
 
 	},
 
 	resolve: {
-    extensions: ['', '.js', '.jsx']
+		extensions: ['', '.js', '.jsx']
 	},
 
-	plugins: [
-	    new webpack.HotModuleReplacementPlugin(),
-	    new webpack.NoErrorsPlugin()
-	]
-	//plugins: [
-		// new webpack.optimize.CommonsChunkPlugin({
-  //           name:      'main', // Move dependencies to our main file
-  //           children:  true, // Look for common dependencies in all children,
-  //           minChunks: 2, // How many times a dependency must come up before being extracted
-  //       }),
-
-  //       new webpack.optimize.UglifyJsPlugin({
-  //           mangle:   true,
-  //           compress: {
-  //               warnings: false, // Suppress uglification warnings
-  //           },
-  //       })
-       
-	//],
-
-
-}
+	plugins: plugins
+};

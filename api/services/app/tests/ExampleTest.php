@@ -14,7 +14,7 @@ class ExampleTest extends TestCase {
 		$responeArray = (array)$response->getData();
 		$flag = true;
 
-		foreach ($responeArray as $key => $value) {
+		foreach ($responeArray as $value) {
 
 			if (!array_key_exists('task_id', $value) ) {
 

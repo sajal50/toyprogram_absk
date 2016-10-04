@@ -13,8 +13,8 @@ class TaskController extends BaseController {
 	public function addTask () {
 
 		$payload = Input::all();
-		$id = Tasks::addTask($payload['taskName'], $payload['taskAssignee']);
-		return Response::json(array('taskId'=>$id));
+		$taskId = Tasks::addTask($payload['taskName'], $payload['taskAssignee']);
+		return Response::json(array('taskId'=>$taskId));
 	}
 
 }

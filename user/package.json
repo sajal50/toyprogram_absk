@@ -4,7 +4,7 @@
   "description": "This is the readme for front end",
   "main": "index.js",
   "scripts": {
-    "build": "NODE_ENV=production webpack",
+    "build": "eslint app && NODE_ENV=production webpack",
     "dev": "NODE_ENV=dev webpack-dev-server --progress --inline",
     "lint": "eslint app"
 

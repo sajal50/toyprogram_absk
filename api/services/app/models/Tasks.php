@@ -9,20 +9,13 @@ class Tasks extends Eloquent implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
+	
 	protected $table = 'tasks';
 
 	public static function getAllTasks () {
 
 
 		return Tasks::get()->toArray();
-
-
-
 
 	}
 
@@ -32,8 +25,6 @@ class Tasks extends Eloquent implements UserInterface, RemindableInterface {
 		return Tasks::insertGetId(array ('taskName' => $taskName , 'taskAssignee' => $taskAssignee));
 
 		
-
-
 	}
 
 }

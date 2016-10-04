@@ -9,6 +9,9 @@
 		"barryvdh/laravel-cors": "0.2.x",
 		"phpunit/phpunit": "4.0.*"
 	},
+	"require-dev": {
+        "phpmd/phpmd" : "@stable"
+    },
 	"autoload": {
 		"classmap": [
 			"app/commands",

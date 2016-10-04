@@ -4,8 +4,7 @@ class TaskController extends BaseController {
 
 	public function getTasks () {
 
-		header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-
+		
 		$tasks = Tasks::getAllTasks();
 		return Response::json($tasks);
 

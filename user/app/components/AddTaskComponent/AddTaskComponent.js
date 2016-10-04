@@ -16,7 +16,7 @@ class AddTaskComponent extends React.Component {
 		this.props.setNewTask ({
 
 			"taskName" : this.taskNameRef.value,
-			"taskAssigned" : this.assignedToRef.value
+			"taskAssignee" : this.assignedToRef.value
 		});
 		
 		this.clearInputs();

@@ -12,6 +12,13 @@ class TaskComponent extends React.Component {
 
 	}
 
+	componentWillMount() {
+
+		this.props.taskActions.fetchTasks();
+
+		
+	}
+
 	
 	getTasksRender (tasks) {
 
@@ -32,7 +39,7 @@ class TaskComponent extends React.Component {
 
 					<td>
 
-					{task.taskAssigned}
+					{task.taskAssignee}
 					</td>
 
 
@@ -80,7 +87,6 @@ class TaskComponent extends React.Component {
 
 	onAddTaskClickHandler () {
 
-		console.log("being clicked");
 		hashHistory.push('addTask');
 
 

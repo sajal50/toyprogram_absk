@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {setNewTask} from '../../actions/taskActions.js';
+import {setNewTask, fetchTasks} from '../../actions/taskActions.js';
 import TaskComponent from '../../components/TaskComponent/TaskComponent.js';
 
 
@@ -25,6 +25,10 @@ let mapDispatchToProps = (dispatch) => {
 				dispatch (setNewTask(payload));
 
 
+			},
+			"fetchTasks" : () => {
+
+				dispatch (fetchTasks());
 			}
 		}
 
